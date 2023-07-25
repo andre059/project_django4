@@ -1,0 +1,86 @@
+[
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "name": "Томат",
+      "description": "Бычье сердце из Краснодара",
+      "image": "preview/scale_1200.webp",
+      "category": "Пищевые товары для массового потребления.",
+      "purchase_price": "250.00",
+      "creation_date": "2023-07-24T17:01:26.547Z",
+      "last_modified_date": "2023-07-24T17:01:26.547Z",
+      "availability": true
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "name": "огурцы",
+      "description": "Тепличные",
+      "image": "",
+      "category": "Пищевые товары для массового потребления.",
+      "purchase_price": "160.00",
+      "creation_date": "2023-07-24T17:03:02.506Z",
+      "last_modified_date": "2023-07-24T17:03:02.506Z",
+      "availability": true
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "name": "Хлеб",
+      "description": "Ржаной",
+      "image": "",
+      "category": "Пищевые товары для массового потребления.",
+      "purchase_price": "45.00",
+      "creation_date": "2023-07-24T17:03:56.299Z",
+      "last_modified_date": "2023-07-24T17:03:56.299Z",
+      "availability": true
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+      "name": "Пряники",
+      "description": "Грушевые",
+      "image": "",
+      "category": "Пищевые товары для массового потребления.",
+      "purchase_price": "78.00",
+      "creation_date": "2023-07-24T17:04:45.960Z",
+      "last_modified_date": "2023-07-24T17:04:45.960Z",
+      "availability": true
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+      "name": "Пельмени",
+      "description": "Из свинины и курицы",
+      "image": "",
+      "category": "Пищевые товары для массового потребления.",
+      "purchase_price": "300.00",
+      "creation_date": "2023-07-24T17:05:48.015Z",
+      "last_modified_date": "2023-07-24T17:05:48.015Z",
+      "availability": true
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+      "name": "Свинина",
+      "description": "Шейная часть",
+      "image": "",
+      "category": "Пищевые товары для массового потребления.",
+      "purchase_price": "390.00",
+      "creation_date": "2023-07-24T17:07:04.726Z",
+      "last_modified_date": "2023-07-24T17:07:04.726Z",
+      "availability": true
+    }
+  }
+]
