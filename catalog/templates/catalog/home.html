@@ -1,9 +1,11 @@
 {% extends 'catalog/base.html' %}
+{% load mediapath %}
+
 {% block content %}
 {% for object in object_list %}
 <div class="col-md-4">
     <div class="card mb-4 box-shadow">
-        {% mediapath object.image %}
+        <img src="{% mediapath object.image %}"/>
         <div class="card-body">
             <p class="card-text">
                 {% if object.availability %}
