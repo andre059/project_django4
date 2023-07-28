@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 
 from catalog.models import Product
@@ -25,5 +25,5 @@ def contacts(request):
 
 class ProductDetailView(DetailView):
     model = Product
-    template_name = 'catalog/home.html'
+    template_name = 'catalog/contacts.html'
 
