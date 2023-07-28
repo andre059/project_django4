@@ -1,15 +1,39 @@
 [
   {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Плодоовощные товары",
+      "description": "К ним относят фрукты, овощи, грибы и ягоды, а также продукты их переработки - консервы, соленья, прочее."
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name": "Зерно-мучные товары",
+      "description": "Мука всех сортов, зерна, крупы и изделия из них, макароны и хлебобулочные изделия."
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "name": "Мясо",
+      "description": "К числу производный товаров из мяса относятся полуфабрикаты, колбасы, сосиски, копченые изделия, субпродукты, другие изделия.\r\n В том числе мясо птицы и продукция из него."
+    }
+  },
+  {
     "model": "catalog.product",
     "pk": 1,
     "fields": {
-      "name": "Томат",
-      "description": "Бычье сердце из Краснодара",
-      "image": "preview/scale_1200.webp",
-      "category": "Пищевые товары для массового потребления.",
-      "purchase_price": "250.00",
-      "creation_date": "2023-07-24T17:01:26.547Z",
-      "last_modified_date": "2023-07-24T17:01:26.547Z",
+      "name": "Дыня",
+      "description": "сочная и вкусная",
+      "image": "preview/orig.jpg",
+      "category": 1,
+      "purchase_price": "80.00",
+      "creation_date": "2023-07-28T10:14:43.878Z",
+      "last_modified_date": "2023-07-28T10:14:43.878Z",
       "availability": true
     }
   },
@@ -17,13 +41,13 @@
     "model": "catalog.product",
     "pk": 2,
     "fields": {
-      "name": "огурцы",
-      "description": "Тепличные",
-      "image": "",
-      "category": "Пищевые товары для массового потребления.",
-      "purchase_price": "160.00",
-      "creation_date": "2023-07-24T17:03:02.506Z",
-      "last_modified_date": "2023-07-24T17:03:02.506Z",
+      "name": "Хлеб",
+      "description": "Ржаной",
+      "image": "preview/596af564c5790c6ea80a913b16b7556a.jpeg",
+      "category": 2,
+      "purchase_price": "46.00",
+      "creation_date": "2023-07-28T10:16:35.567Z",
+      "last_modified_date": "2023-07-28T10:19:57.852Z",
       "availability": true
     }
   },
@@ -31,55 +55,13 @@
     "model": "catalog.product",
     "pk": 3,
     "fields": {
-      "name": "Хлеб",
-      "description": "Ржаной",
-      "image": "",
-      "category": "Пищевые товары для массового потребления.",
-      "purchase_price": "45.00",
-      "creation_date": "2023-07-24T17:03:56.299Z",
-      "last_modified_date": "2023-07-24T17:03:56.299Z",
-      "availability": true
-    }
-  },
-  {
-    "model": "catalog.product",
-    "pk": 4,
-    "fields": {
-      "name": "Пряники",
-      "description": "Грушевые",
-      "image": "",
-      "category": "Пищевые товары для массового потребления.",
-      "purchase_price": "78.00",
-      "creation_date": "2023-07-24T17:04:45.960Z",
-      "last_modified_date": "2023-07-24T17:04:45.960Z",
-      "availability": true
-    }
-  },
-  {
-    "model": "catalog.product",
-    "pk": 5,
-    "fields": {
-      "name": "Пельмени",
-      "description": "Из свинины и курицы",
-      "image": "",
-      "category": "Пищевые товары для массового потребления.",
-      "purchase_price": "300.00",
-      "creation_date": "2023-07-24T17:05:48.015Z",
-      "last_modified_date": "2023-07-24T17:05:48.015Z",
-      "availability": true
-    }
-  },
-  {
-    "model": "catalog.product",
-    "pk": 6,
-    "fields": {
-      "name": "Свинина",
-      "description": "Шейная часть",
-      "image": "",
-      "category": "Пищевые товары для массового потребления.",
-      "purchase_price": "390.00",
-      "creation_date": "2023-07-24T17:07:04.726Z",
-      "last_modified_date": "2023-07-24T17:07:04.726Z",
+      "name": "мясо",
+      "description": "Свинина, свежее",
+      "image": "preview/svinina-2.jpg",
+      "category": 3,
+      "purchase_price": "400.00",
+      "creation_date": "2023-07-28T10:19:45.202Z",
+      "last_modified_date": "2023-07-28T10:19:45.202Z",
       "availability": true
     }
   }
