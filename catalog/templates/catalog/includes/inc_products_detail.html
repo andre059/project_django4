@@ -6,13 +6,7 @@
     <div class="card mb-4 box-shadow">
         <img src="{% mediapath object.image %}"/>
         <div class="card-body">
-            <p class="card-text">
-                {% if object.availability %}
-                {{ object|title }}
-                {% else %}
-                <span class="text-muted">{{ object|title }}</span>
-                {% endif %}
-            </p>
+            <p class="card-text">{{ object|title }}</p>
         </div>
     </div>
 </div>
