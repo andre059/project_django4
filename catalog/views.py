@@ -25,5 +25,5 @@ def contacts(request):
 
 class ProductDetailView(DetailView):
     model = Product
-    template_name = 'catalog/products_detail.html'
+    template_name = 'catalog/inc_products_detail.html'
 

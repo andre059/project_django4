@@ -5,10 +5,10 @@
     <div class="card mb-4 box-shadow">
         <div class="card-body">
             <p class="card-text">{{ object.name }}</p>
-            {% include 'catalog/products_detail.html' %}
+            {% include 'catalog/includes/inc_products_detail.html' %}
             <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                    <a href=" {% url 'catalog:view_project' object.pk %} ">Смотреть</a>
+                    <a href="{% url 'catalog:views_product' object.pk %}">Смотреть</a>
                     <button type="button" class="btn btn-sm btn-outline-secondary">Редактировать</button>
                 </div>
             </div>

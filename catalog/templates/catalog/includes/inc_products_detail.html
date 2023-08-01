@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load mediapath %}
+
+{% for object in object_list %}
+<div class="col-md-4">
+    <div class="card mb-4 box-shadow">
+        <img src="{% mediapath object.image %}"/>
+        <div class="card-body">
+            <p class="card-text">
+                {% if object.availability %}
+                {{ object|title }}
+                {% else %}
+                <span class="text-muted">{{ object|title }}</span>
+                {% endif %}
+            </p>
+        </div>
+    </div>
+</div>
+{% endfor %}

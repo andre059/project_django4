@@ -8,5 +8,5 @@ app_name = MainConfig.name
 urlpatterns = [
     path('', ProductListView.as_view(), name='home'),
     path('contacts/', contacts, name='contacts'),
-    path('view/<int:pk>/', ProductDetailView.as_view(), name='view_project')
+    path('<int:pk>/view/', ProductDetailView.as_view(), name='views_product')
 ]
