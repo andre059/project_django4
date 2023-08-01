@@ -6,7 +6,7 @@
     <div class="card mb-4 box-shadow">
         <img src="{% mediapath object.image %}"/>
         <div class="card-body">
-            <p class="card-text">{{ Product.name }}</p>
+            <p class="card-text">{{ object|title }}</p>
             <!-- Дополнительные поля продукта -->
             <p>{{ Product.description }}</p>
             <p>{{ Product.category }}</p>
