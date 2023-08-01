@@ -6,18 +6,14 @@
     <div class="card mb-4 box-shadow">
         <img src="{% mediapath object.image %}"/>
         <div class="card-body">
-            <p class="card-text">
-                {% if object.availability %}
-                {{ object|title }}
-                {% else %}
-                <span class="text-muted">{{ object|title }}</span>
-                {% endif %}
-            </p>
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                </div>
-            </div>
+            <p class="card-text">{{ Product.name }}</p>
+            <!-- Дополнительные поля продукта -->
+            <p>{{ Product.description }}</p>
+            <p>{{ Product.category }}</p>
+            <p>{{ Product.purchase_price }}</p>
+            <p>{{ Product.creation_date }}</p>
+            <p>{{ Product.last_modified_date }}</p>
         </div>
     </div>
 </div>
-{% endfor %}
+{% endfor %
