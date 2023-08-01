@@ -1,20 +1,18 @@
 {% extends 'catalog/base.html' %}
 
-
 {% block content %}
-{% for object in object_list %}
 <div class="col-md-4">
     <div class="card mb-4 box-shadow">
         <div class="card-body">
-            <p>{{ object.name }}</p>
+            <p class="card-text">{{ object.name }}</p>
+            {% include 'catalog/products_detail.html' %}
             <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                    <a href=" {% url 'catalog:index' object.pk %} ">Смотреть</a>
+                    <a href=" {% url 'catalog:view_project' object.pk %} ">Смотреть</a>
                     <button type="button" class="btn btn-sm btn-outline-secondary">Редактировать</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-{% endfor %}
 {% endblock %}
