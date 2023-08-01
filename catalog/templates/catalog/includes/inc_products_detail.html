@@ -7,6 +7,12 @@
         <img src="{% mediapath object.image %}"/>
         <div class="card-body">
             <p class="card-text">{{ object|title }}</p>
+            <!-- Дополнительные поля продукта -->
+            <p>{{ Product.description }}</p>
+            <p>{{ Product.category }}</p>
+            <p>{{ Product.purchase_price }}</p>
+            <p>{{ Product.creation_date }}</p>
+            <p>{{ Product.last_modified_date }}</p>
         </div>
     </div>
 </div>
