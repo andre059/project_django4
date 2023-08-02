@@ -7,9 +7,9 @@
         <div class="card-body">
             <p class="card-text">
                 {% if object.availability %}
-                {{ object.name }}
+                {{ object.name|title }}
                 {% else %}
-                <span class="text-muted">{{ object.name }}</span>
+                <span class="text-muted">{{ object.name|title }}</span>
                 {% endif %}
             </p>
             <div class="d-flex justify-content-between align-items-center">
