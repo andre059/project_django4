@@ -1,19 +1,30 @@
-{% extends 'catalog/home.html' %}
+{% extends 'catalog/base.html' %}
 {% load mediapath %}
 
-{% for object in object_list %}
-<div class="col-md-4">
+{% block content %}
+<div class="col-md-5">
     <div class="card mb-4 box-shadow">
         <img src="{% mediapath object.image %}"/>
         <div class="card-body">
-            <p class="card-text">{{ object|title }}</p>
-            <!-- Дополнительные поля продукта -->
-            <p>{{ Product.description }}</p>
-            <p>{{ Product.category }}</p>
-            <p>{{ Product.purchase_price }}</p>
-            <p>{{ Product.creation_date }}</p>
-            <p>{{ Product.last_modified_date }}</p>
+            <h2 style="font-size: 2em; font-weight: bold;" >{{ object.name }}</h2>
+            <p style="font-size: 1.5em">Описание:</p>
+            <p>{{ object.description }}</p>
+            <p style="font-size: 1.5em">Категория:</p>
+            <p>{{ object.category }}</p>
+            <p style="font-size: 1.5em">Цена за килограмм в рублях:</p>
+            <p>{{ object.purchase_price }}</p>
+            <p style="font-size: 1.5em">Дата создания:</p>
+            <p>{{ object.creation_date }}</p>
+            <p style="font-size: 1.5em">Дата последнего изменения:</p>
+            <p> {{ object.last_modified_date }}</p>
+            <p style="font-size: 1.5em">
+                {% if object.availability %}
+                Есть в наличии
+                {% else %}
+                Нет в наличии
+                {% endif %}
+            </p>
         </div>
     </div>
 </div>
-{% endfor %}
+{% endblock %}
