@@ -10,14 +10,17 @@
                         Материал "{{ object.title }}"
                     </h3>
                 </div>
-                <div class="card-body">
+                <div class="card-body" style="padding-top: 20px; padding-left: 20px;">
                     <p>
                         {{ object.body }}
                     </p>
                 </div>
-                <div class="carde-footer"></div>
+                <div class="card-body" style="padding-top: 10px; padding-left: 20px;">
+                    Просмотры: {{ object.views_count }}
+                </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 {% endblock %}
