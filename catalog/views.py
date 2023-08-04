@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView
 
 from catalog.models import Product
 
@@ -27,3 +28,8 @@ class ProductDetailView(DetailView):
     model = Product
     template_name = 'catalog/includes/inc_products_detail.html'
 
+
+class ProductCreateView(CreateView):
+    model = Product
+    fields = ('name', 'description', 'image', 'category', 'purchase_price')
+    success_url = reverse_lazy('catalog:home')

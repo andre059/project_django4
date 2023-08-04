@@ -1,6 +1,11 @@
 {% extends 'catalog/base.html' %}
 
 {% block content %}
+<div class="col-12 md-5">
+    <a class="btn btn-outline-primary" href="{% url 'catalog:create_product' %}">Добавить продукт</a>
+    <div class="card-body" style="padding-top: 10px; padding-left: 20px;">
+    </div>
+</div>
 {% for object in object_list %}
 <div class="col-md-4">
     <div class="card mb-4 box-shadow">
