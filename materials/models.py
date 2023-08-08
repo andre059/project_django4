@@ -9,7 +9,7 @@ class Materials(models.Model):
 
     views_count = models.IntegerField(default=0, verbose_name='просмотры')
     is_published = models.BooleanField(default=True, verbose_name='опубликовано')
-    created_at = models.DateField(auto_now_add=True, verbose_name='дата создания', **NULLABLE)
+    created_at = models.DateField(auto_now_add=True, verbose_name='дата создания')
     preview = models.ImageField(verbose_name='Превью', upload_to='blog/', **NULLABLE)
     slug = models.CharField(max_length=150, verbose_name='slug', **NULLABLE)
 
