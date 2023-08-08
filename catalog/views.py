@@ -7,7 +7,6 @@ from catalog.models import Product
 
 class ProductListView(ListView):
     model = Product
-    template_name = 'catalog/home.html'
 
 
 def contacts(request):
@@ -26,7 +25,6 @@ def contacts(request):
 
 class ProductDetailView(DetailView):
     model = Product
-    template_name = 'catalog/includes/inc_products_detail.html'
 
 
 class ProductCreateView(CreateView):
