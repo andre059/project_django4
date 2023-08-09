@@ -3,12 +3,14 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from pytils.translit import slugify
 
+from materials.forms import MaterialsForm
 from materials.models import Materials
 
 
 class MaterialCreateView(CreateView):
     model = Materials
-    fields = ('title', 'body')
+    # fields = ('title', 'body')
+    form_class = MaterialsForm
     success_url = reverse_lazy('materials:list')
 
     def form_valid(self, form):
@@ -22,7 +24,8 @@ class MaterialCreateView(CreateView):
 
 class MaterialUpdateView(UpdateView):
     model = Materials
-    fields = ('title', 'body', 'preview')
+    # fields = ('title', 'body', 'preview')
+    form_class = MaterialsForm
     success_url = reverse_lazy('materials:list')
 
     def form_valid(self, form):
