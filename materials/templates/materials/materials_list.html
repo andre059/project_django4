@@ -8,7 +8,7 @@
     {% for object in object_list %}
     <div class="col-md-4">
         <div class="card mb-4 box-shadow d-flex flex-column justify-content-center align-items-center text-center "
-             style="width: 250px; height: 150px; overflow: auto;">
+             style="width: 350px; height: 150px; overflow: auto;">
             <div class="card-body">
                 <p class="card-text">
                     {{ object|title }}
@@ -22,6 +22,11 @@
                         <a href="{% url 'materials:delete' object.pk %}" type="button"
                            class="btn btn-cm btn-outline-danger">Delete</a>
                     </div>
+                    {% if object.is_active %}
+                    <a class="btn btn-warning" href="{% url 'materials:toggle_activiti' object.pk %}">Деактивировать</a>
+                    {% else %}
+                    <a class="btn btn-success" href="{% url 'materials:toggle_activiti' object.pk %}">Активировать</a>
+                    {% endif %}
                 </div>
             </div>
         </div>

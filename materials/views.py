@@ -1,3 +1,4 @@
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from pytils.translit import slugify
@@ -59,3 +60,14 @@ class MateriaDeleteView(DeleteView):
     model = Materials
     success_url = reverse_lazy('materials:list')
 
+
+def toggle_activiti(request, pk):
+    materials_item = get_object_or_404(Materials, pk=pk)
+    if materials_item.is_active:
+        materials_item.is_active = False
+    else:
+        materials_item.is_active = True
+
+    materials_item.save()
+
+    return redirect(reverse('materials:list'))

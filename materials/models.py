@@ -13,6 +13,8 @@ class Materials(models.Model):
     preview = models.ImageField(verbose_name='Превью', upload_to='blog/', **NULLABLE)
     slug = models.CharField(max_length=150, verbose_name='slug', **NULLABLE)
 
+    is_active = models.BooleanField(default=True)
+
     def __str__(self):
         return self.title
 
