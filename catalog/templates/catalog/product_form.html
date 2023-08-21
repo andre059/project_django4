@@ -1,35 +1,21 @@
 {% extends 'catalog/base.html' %}
 
 {% block content %}
-<div class="col-7">
-    <form class="row" method="post">
+<div class="col-12">
+    <div class="row">
         <div class="col-6">
             <div class="card">
                 <div class="card-body">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" class="btn btn-primari" style="background-color: blue;
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primari" style="background-color: blue;
                          color: white;">Создать
-                    </button>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="col-6">
-            <div class="card">
-                <div class="card-headr">
-                    Предметы
-                </div>
-                <div class="card-body">
-                    <table class="table">
-                        {% for form in formset.forms %}
-                            <tr class="subject-form">
-                                {{ form.as_p }}
-                            </tr>
-                        {% endfor %}
-                    </table>
-                </div>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
 {% endblock %}

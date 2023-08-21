@@ -57,7 +57,7 @@ class ProductUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
-        SubjectFormset = inlineformset_factory(Product, Subject, form=SubjectForm, extra=1)
+        SubjectFormset = inlineformset_factory(Product, Subject, form=SubjectForm, extra=2)
         context_data['formset'] = SubjectFormset()
         return context_data
 
