@@ -1,10 +1,11 @@
+from django.forms import inlineformset_factory
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from pytils.translit import slugify
 
-from catalog.forms_catalog import ProductForm
-from catalog.models import Product
+from catalog.forms_catalog import ProductForm, SubjectForm
+from catalog.models import Product, Subject
 
 
 class ProductListView(ListView):
@@ -40,6 +41,7 @@ class ProductUpdateView(UpdateView):
     model = Product
     # fields = ('name', 'description', 'category')
     form_class = ProductForm
+    template_name = 'catalog/product_form_with_formset.html'
     # success_url = reverse_lazy('catalog:home')
 
     def form_valid(self, form):
@@ -52,6 +54,12 @@ class ProductUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse('catalog:view', args=[self.kwargs.get('pk')])
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        SubjectFormset = inlineformset_factory(Product, Subject, form=SubjectForm, extra=1)
+        context_data['formset'] = SubjectFormset()
+        return context_data
 
 
 class ProductDeleteView(DeleteView):
