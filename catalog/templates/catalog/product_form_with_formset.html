@@ -4,7 +4,7 @@
 <div class="col-12">
     <form class="row" method="post">
         <div class="col-6">
-            <div class="card">
+            <div class="card h-100">
                 <div class="card-header bg-primary text-white">
                     Форма
                 </div>
@@ -18,16 +18,14 @@
             </div>
         </div>
         <div class="col-6">
-            <div class="card">
+            <div class="card h-100">
                 <div class="card-header bg-primary text-white">
                     Предметы
                 </div>
                 <div class="card-body">
-                    <div class="card-body">
-                        {% for form in formset.forms %}
-                        {{ form.as_p }}
-                        {% endfor %}
-                    </div>
+                    {% for form in formset.forms %}
+                    {{ form.as_p }}
+                    {% endfor %}
                 </div>
             </div>
         </div>

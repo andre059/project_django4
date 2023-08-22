@@ -37,3 +37,22 @@ footer p {
 }
 
 .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+.btn-group .btn {
+  margin-right: 10px; /* добавить отступ справа между кнопками */
+}
+
+.row {
+  display: flex; /* устанавливает flex контейнер */
+  align-items: stretch; /* выравнивает элементы по высоте */
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px; /* расстояние между карточками */
+}
+.card {
+  display: flex;
+  flex-direction: column;
+}

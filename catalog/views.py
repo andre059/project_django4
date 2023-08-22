@@ -4,7 +4,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from pytils.translit import slugify
 
-from catalog.forms_catalog import ProductForm, SubjectForm
+from catalog.forms import ProductForm, SubjectForm
 from catalog.models import Product, Subject
 
 
@@ -45,7 +45,7 @@ class ProductUpdateView(UpdateView):
     # success_url = reverse_lazy('catalog:home')
 
     def __init__(self, **kwargs):
-        super().__init__(kwargs)
+        super().__init__(**kwargs)
         self.object = None
 
     def get_success_url(self):

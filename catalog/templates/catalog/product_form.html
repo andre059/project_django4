@@ -2,34 +2,20 @@
 
 {% block content %}
 <div class="col-12">
-    <form class="row" method="post">
+    <div class="row">
         <div class="col-6">
             <div class="card">
-                <div class="card-header bg-primary text-white">
-                    Форма
-                </div>
                 <div class="card-body">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" class="btn btn-primary" style="background-color: blue; color: white;">
-                        Создать
-                    </button>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primari" style="background-color: blue;
+                         color: white;">Создать
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="col-6">
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    Предметы
-                </div>
-                <div class="card-body">
-                    {% for form in formset.forms %}
-                    {{ form.as_p }}
-                    {% endfor %}
-                </div>
-                <div class="card-footer"></div>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
 {% endblock %}
