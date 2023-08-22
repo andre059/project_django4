@@ -41,7 +41,7 @@ class ProductUpdateView(UpdateView):
     model = Product
     # fields = ('name', 'description', 'category')
     form_class = ProductForm
-    # template_name = 'catalog/product_form_with_formset.html'
+    template_name = 'catalog/product_form_with_formset.html'
     # success_url = reverse_lazy('catalog:home')
 
     def __init__(self, **kwargs):

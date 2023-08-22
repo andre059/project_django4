@@ -23,11 +23,11 @@
                     Предметы
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered">
-                            <tr class="subject-form">
-                                {{ form.as_p }}
-                            </tr>
-                    </table>
+                    <div class="card-body">
+                        {% for form in formset.forms %}
+                        {{ form.as_p }}
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
