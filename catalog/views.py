@@ -41,25 +41,36 @@ class ProductUpdateView(UpdateView):
     model = Product
     # fields = ('name', 'description', 'category')
     form_class = ProductForm
-    template_name = 'catalog/product_form_with_formset.html'
+    # template_name = 'catalog/product_form_with_formset.html'
     # success_url = reverse_lazy('catalog:home')
 
-    def form_valid(self, form):
-        if form.is_valid():
-            new_mat = form.save()
-            new_mat.slug = slugify(new_mat.title)
-            new_mat.save()
-
-        return super().form_valid(form)
+    def __init__(self, **kwargs):
+        super().__init__(kwargs)
+        self.object = None
 
     def get_success_url(self):
         return reverse('catalog:view', args=[self.kwargs.get('pk')])
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
-        SubjectFormset = inlineformset_factory(Product, Subject, form=SubjectForm, extra=2)
-        context_data['formset'] = SubjectFormset()
+        SubjectFormset = inlineformset_factory(Product, Subject, form=SubjectForm, extra=1)
+        if self.request.method == 'POST':
+            context_data['formset'] = SubjectFormset(self.request.POST, instance=self.object)
+        else:
+            context_data['formset'] = SubjectFormset(instance=self.object)
         return context_data
+
+    def form_valid(self, form):
+        formset = self.get_context_data()['formset']
+        self.object = form.save()
+        if formset.is_valid():
+            formset.instance = self.object
+            formset.save()
+            # new_mat = form.save()
+            # new_mat.slug = slugify(new_mat.title)
+            # new_mat.save()
+
+        return super().form_valid(form)
 
 
 class ProductDeleteView(DeleteView):
