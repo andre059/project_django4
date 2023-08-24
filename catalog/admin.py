@@ -18,5 +18,5 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Subject)
 class SubjectAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description')
-    list_filter = ('description',)
+    list_display = ('title', 'product')
+    list_filter = ('product',)
