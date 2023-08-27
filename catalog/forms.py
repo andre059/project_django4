@@ -22,9 +22,11 @@ class ProductForm(FormStyleMixin, forms.ModelForm):
     def clean_email(self):
         cleaned_data = self.cleaned_data['email']
 
-        if not cleaned_data.endswith('@') and '@' not in cleaned_data:
+        if cleaned_data:
+            if not cleaned_data.endswith('@') and '@' not in cleaned_data:
+                raise forms.ValidationError('Должен быть введен адрес почты ')
+        else:
             raise forms.ValidationError('Должен быть введен адрес почты ')
-
         return cleaned_data
 
 
