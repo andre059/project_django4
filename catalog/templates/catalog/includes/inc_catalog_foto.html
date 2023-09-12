@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<li>
+    <a href="media/preview" id="photoButton" class="text-white">Фото</a>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script>
+        $(document).ready(function() {
+            $('#photoButton').on('click', function() {
+                $('ul.list-unstyled li a').each(function(index) {
+                    var photoUrl = $(this).attr('href');
+                    if (photoUrl) {
+                        window.open(photoUrl, '_blank');
+                    }
+                });
+            });
+        });
+        </script>
+    </head>
+</li>
