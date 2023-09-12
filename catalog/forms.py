@@ -12,7 +12,6 @@ class FormStyleMixin:
 
 
 class ProductForm(FormStyleMixin, forms.ModelForm):
-
     class Meta:
         model = Product
         fields = '__all__'
@@ -29,10 +28,30 @@ class ProductForm(FormStyleMixin, forms.ModelForm):
             raise forms.ValidationError('Должен быть введен адрес почты ')
         return cleaned_data
 
+    def clean_name(self):
+        cleaned_data = self.cleaned_data['name']
+
+        exception_words = ('казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно',
+                           'обман', 'полиция', 'радар')
+        for word in cleaned_data.split():
+            if word.lower() in exception_words:
+                raise forms.ValidationError('Такое слово нельзя вводить !!!')
+
+        return cleaned_data
+
+    def clean_description(self):
+        cleaned_data = self.cleaned_data['description']
+
+        exception_words = ('казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно',
+                           'обман', 'полиция', 'радар')
+        for word in cleaned_data.split():
+            if word.lower() in exception_words:
+                raise forms.ValidationError('Такое слово нельзя вводить !!!')
+
+        return cleaned_data
+
 
 class SubjectForm(FormStyleMixin, forms.ModelForm):
-
     class Meta:
         model = Subject
         fields = '__all__'
-

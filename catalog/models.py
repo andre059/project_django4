@@ -18,7 +18,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=150, verbose_name='наименование')
-    email = models.EmailField(verbose_name='почта', unique=True, **NULLABLE)
+    email = models.CharField(max_length=150, verbose_name='почта', unique=True, **NULLABLE)
     description = models.CharField(max_length=150, verbose_name='описание')
     image = models.ImageField(upload_to='preview/', verbose_name='изображение ', **NULLABLE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='категория')
