@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<div>
+    <div class="col-sm-4 offset-md-1 py-4">
+        <div class="list-unstyled">
+            <a href="{% url 'catalog:open_images' %}" id="photoButton" class="text-white">Фото</a>
+        </div>
+    </div>
+    <div>
+        {% for image_file in image_files %}
+        <img src="{{ image_file }}" width="300" height="300">
+        {% endfor %}
+    </div>
+</div>
+
+

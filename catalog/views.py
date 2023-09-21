@@ -1,3 +1,6 @@
+import glob
+import webbrowser
+
 from django.forms import inlineformset_factory
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
@@ -76,3 +79,20 @@ class ProductUpdateView(UpdateView):
 class ProductDeleteView(DeleteView):
     model = Product
     success_url = reverse_lazy('catalog:home')
+
+
+def open_images(request):
+    # Путь к папке с изображениями
+    folder_path = "media/preview"
+
+    # Поиск всех изображений в папке
+    image_files = glob.glob(folder_path + "/*")
+    # Одно изображение
+    # image_files = ["media/preview"]
+
+    # Передача списка изображений в шаблон
+    return render(request, 'catalog/product_foto.html', {'image_files': image_files})
+
+    # Открытие каждого изображения в браузере
+    # for image_file in image_files:
+    # return webbrowser.open(image_file)
