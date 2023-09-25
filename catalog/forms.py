@@ -1,6 +1,6 @@
 from django import forms
 
-from catalog.models import Product, Subject
+from catalog.models import Product, Subject, Version
 
 
 class FormStyleMixin:
@@ -55,3 +55,11 @@ class SubjectForm(FormStyleMixin, forms.ModelForm):
     class Meta:
         model = Subject
         fields = '__all__'
+
+
+class VersionForm(FormStyleMixin, forms.ModelForm):
+    class Meta:
+        model = Version
+        fields = '__all__'
+        # fields = ('version_number', 'version_name')
+        # exclude = ('is_active',)

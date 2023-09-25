@@ -23,16 +23,34 @@
                     Предметы
                 </div>
                 <div class="card-body">
-                    {{ formset.management_form }}
-                    {% for form in formset.forms %}
+                    {{ subject_formset.management_form }}
+                    {% for form in subject_formset.forms %}
                         {{ form.as_p }}
                         {% if not forloop.last %}
-                        <hr>
+                        <чhr>
                         {% endif %}
                     {% endfor %}
                 </div>
             </div>
         </div>
+
+            <div class="col-6">
+                <div class="card h-100">
+                    <div class="card-header bg-primary text-white">
+                        Версии
+                    </div>
+                    <div class="card-body">
+                        {{ version_formset.management_form }}
+                        {% for form in version_formset.forms %}
+                            {{ form.as_p }}
+                            {% if not forloop.last %}
+                            <hr>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
     </form>
 </div>
 {% endblock %}

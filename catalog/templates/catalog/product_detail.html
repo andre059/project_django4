@@ -38,6 +38,16 @@
                             <td>Дата последнего изменения</td>
                             <td>{{ object.last_modified_date }}</td>
                         </tr>
+                        <tr>
+                            <td>Активный товар</td>
+                            <td>
+                                {% if object.is_active %}
+                                    Нет
+                                {% else %}
+                                    Да
+                                {% endif %}
+                            </td>
+                        </tr>
                     </table>
 
                 </div>

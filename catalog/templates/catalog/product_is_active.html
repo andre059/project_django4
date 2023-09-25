@@ -1,0 +1,31 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+<div class="col-6">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">
+                Активные товары
+            </h3>
+            <ul>
+                {% for product in products %}
+                    <ul>&nbsp;</ul>
+                    <h5>{{ product.name }}</h5>
+
+                    {% if object.is_active %}
+                        <li>Активная версия: {{ object.version_name }}</li>
+                        <li>Номер версии: {{ object.version_number }}</li>
+                        <li>Статус активности: {{ object.is_active }}</li>
+                        <li>Наличие: {{ object.availability }}</li>
+                    {% else %}
+                        <li>Не активная версия</li>
+                    {% endif %}
+
+                {% empty %}
+                        <li>Нет товаров.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
