@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 
 from django.http import HttpResponse
-from .forms import SignupForm, UserRegisterForm
+
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -13,7 +13,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, CreateView
 
-from users.forms import UserProfileForm
+from users.forms import UserProfileForm, UserRegisterForm
 from users.models import User
 from .token import account_activation_token
 
@@ -36,7 +36,7 @@ class ProfileView(UpdateView):
 
 def signup(request):
     if request.method == 'POST':
-        form = SignupForm(request.POST)
+        form = UserRegisterForm(request.POST)
         if form.is_valid():
             # save form in the memory not in database
             user = form.save(commit=False)
@@ -58,7 +58,7 @@ def signup(request):
             email.send()
             return HttpResponse('Please confirm your email address to complete the registration')
     else:
-        form = SignupForm()
+        form = UserRegisterForm()
     return render(request, 'signup.html', {'form': form})
 
 
