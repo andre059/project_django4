@@ -16,7 +16,7 @@ class MaterialCreateView(CreateView):
     def form_valid(self, form):
         if form.is_valid():
             new_mat = form.save()
-            new_mat.slug = slugify(new_mat.title)
+            new_mat.slug = slugify(new_mat.name)
             new_mat.save()
 
         return super().form_valid(form)
@@ -31,7 +31,7 @@ class MaterialUpdateView(UpdateView):
     def form_valid(self, form):
         if form.is_valid():
             new_mat = form.save()
-            new_mat.slug = slugify(new_mat.title)
+            new_mat.slug = slugify(new_mat.price)
             new_mat.save()
 
         return super().form_valid(form)
