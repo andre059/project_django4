@@ -1,10 +1,11 @@
 {% extends 'catalog/base.html' %}
+{% load material_mediapath %}
 
 {% block content %}
 <div class="col-12">
     <div class="row">
         <div class="col-6">
-            <div class="card">
+            <div class="card" style="height: 100%;">
                 <div class="card-header">
                     <h3 class="card-title">
                         Материал "{{ object.name }}" ({{ object.slug }})
@@ -26,6 +27,12 @@
                 <div class="card-body" style="padding-top: 10px; padding-left: 20px;">
                     Просмотры: {{ object.views_count }} шт.
                 </div>
+                <div class="card-footer"></div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card" style="height: 100%;">
+                <img src="/media/{{ object.preview }}" style="max-width: 100%; height: auto; object-fit: contain;">
             </div>
         </div>
     </div>

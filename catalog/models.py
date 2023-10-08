@@ -64,7 +64,6 @@ class Version(models.Model):
     def __str__(self):
         return f'{self.product} - {self.version_number} (Версия{self.version_name})'
 
-
     class Meta:
         verbose_name = 'версия'
         verbose_name_plural = 'версии'
