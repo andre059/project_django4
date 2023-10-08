@@ -44,7 +44,7 @@ def signup(request):
             user.save()
             # to get the domain of the current site
             current_site = get_current_site(request)
-            mail_subject = 'Activation link has been sent to your email id'
+            mail_subject = 'Ссылка для активации была отправлена на ваш электронный адрес'
             message = render_to_string('acc_active_email.html', {
                 'user': user,
                 'domain': current_site.domain,
@@ -56,7 +56,7 @@ def signup(request):
                         mail_subject, message, to=[to_email]
             )
             email.send()
-            return HttpResponse('Please confirm your email address to complete the registration')
+            return HttpResponse('Пожалуйста, подтвердите свой адрес электронной почты, чтобы завершить регистрацию')
     else:
         form = UserRegisterForm()
     return render(request, 'signup.html', {'form': form})
@@ -72,7 +72,8 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+        return HttpResponse('Благодарим вас за подтверждение по электронной почте. '
+                            'Теперь вы можете войти в свою учетную запись.')
     else:
-        return HttpResponse('Activation link is invalid!')
+        return HttpResponse('Ссылка для активации недействительна!')
 

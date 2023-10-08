@@ -1,0 +1,201 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Плодоовощные товары",
+      "description": "К ним относят фрукты, овощи, грибы и ягоды, а также продукты их переработки - консервы, соленья, прочее."
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name": "Зерно-мучные товары",
+      "description": "Мука всех сортов, зерна, крупы и изделия из них, макароны и хлебобулочные изделия."
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "name": "Мясо",
+      "description": "К числу производный товаров из мяса относятся полуфабрикаты, колбасы, сосиски, копченые изделия, субпродукты, другие изделия.\r\n В том числе мясо птицы и продукция из него."
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+      "name": "Категория А",
+      "description": "Мясной рубленый или кусковой полуфабрикат [полуфабрикат в тесте] с массовой долей мышечной ткани в рецептуре [в рецептуре начинки] 80,0% и более. То есть доля мяса — не менее 80%."
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "name": "Дыня",
+      "email": null,
+      "description": "сочная и вкусная",
+      "image": "preview/orig.jpg",
+      "category": 1,
+      "purchase_price": "80.00",
+      "creation_date": "2023-07-28T10:14:43.878Z",
+      "last_modified_date": "2023-07-28T12:13:04.625Z",
+      "availability": true
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "name": "Хлеб",
+      "email": null,
+      "description": "Ржаной",
+      "image": "preview/596af564c5790c6ea80a913b16b7556a.jpeg",
+      "category": 2,
+      "purchase_price": "46.00",
+      "creation_date": "2023-07-28T10:16:35.567Z",
+      "last_modified_date": "2023-07-28T12:12:27.347Z",
+      "availability": true
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "name": "мясо",
+      "email": null,
+      "description": "Свинина, свежее",
+      "image": "preview/svinina-2.jpg",
+      "category": 3,
+      "purchase_price": "400.00",
+      "creation_date": "2023-07-28T10:19:45.202Z",
+      "last_modified_date": "2023-07-28T12:12:42.015Z",
+      "availability": true
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+      "name": "пельмени",
+      "email": null,
+      "description": "Из свинины и курицы",
+      "image": "preview/pelmeni4.jpg",
+      "category": 4,
+      "purchase_price": "256.00",
+      "creation_date": "2023-07-28T12:10:56.754Z",
+      "last_modified_date": "2023-07-28T12:10:56.754Z",
+      "availability": true
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 8,
+    "fields": {
+      "name": "тест продукта",
+      "email": "1lk@mail.ru",
+      "description": "уккип",
+      "image": "",
+      "category": 4,
+      "purchase_price": "15616.00",
+      "creation_date": "2023-08-22T10:29:50.310Z",
+      "last_modified_date": "2023-09-25T10:30:43.985Z",
+      "availability": true
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 9,
+    "fields": {
+      "name": "дори",
+      "email": "lk@mail.ru",
+      "description": "ваи",
+      "image": "",
+      "category": 3,
+      "purchase_price": "21265.00",
+      "creation_date": "2023-09-25T11:20:32.575Z",
+      "last_modified_date": "2023-09-25T12:06:10.522Z",
+      "availability": true
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 10,
+    "fields": {
+      "name": "1",
+      "email": "l1k@mail.ru",
+      "description": "арь",
+      "image": "",
+      "category": 4,
+      "purchase_price": null,
+      "creation_date": "2023-09-25T12:08:09.648Z",
+      "last_modified_date": "2023-09-25T12:08:33.733Z",
+      "availability": true
+    }
+  },
+  {
+    "model": "catalog.subject",
+    "pk": 7,
+    "fields": {
+      "title": "аип",
+      "description": "аи",
+      "product": 9
+    }
+  },
+  {
+    "model": "catalog.subject",
+    "pk": 8,
+    "fields": {
+      "title": "чт",
+      "description": "чтчапат",
+      "product": 10
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 2,
+    "fields": {
+      "name": "test 1",
+      "version_number": 2,
+      "version_name": "пробная 2",
+      "is_active": true,
+      "product": 4
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 3,
+    "fields": {
+      "name": "тестовая версия",
+      "version_number": 3,
+      "version_name": "бета версия",
+      "is_active": true,
+      "product": 8
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 4,
+    "fields": {
+      "name": "аи",
+      "version_number": 6,
+      "version_name": "уаиыкаи",
+      "is_active": true,
+      "product": 9
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 5,
+    "fields": {
+      "name": "аптчпт",
+      "version_number": 16,
+      "version_name": "паютбь",
+      "is_active": true,
+      "product": 10
+    }
+  }
+]
