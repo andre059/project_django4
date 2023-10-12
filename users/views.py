@@ -32,37 +32,32 @@ class RegisterView(CreateView):
         super().__init__()
         self.method = None
 
-    # def form_valid(self, form):
+        # def form_valid(self, form):
+        # Создаем пользователя, но пока не сохраняем
+        # user = form.save(commit=False)
+        # user.is_active = False  # Устанавливаем активность пользователя в False
+        # user.save()  # Сохраняем пользователя
 
-    # Создаем пользователя, но пока не сохраняем
-    # user = form.save(commit=False)
-    # user.is_active = False  # Устанавливаем активность пользователя в False
-    # user.save()  # Сохраняем пользователя
+        # Генерируем и сохраняем токен подтверждения почты
+        # token = get_random_string(length=32)
+        # email_token = EmailVerificationToken.objects.create(user=user, token=token)
 
-    # Генерируем и сохраняем токен подтверждения почты
-    # token = get_random_string(length=32)
-    # email_token = EmailVerificationToken.objects.create(user=user, token=token)
+        # Отправляем письмо с токеном подтверждения
+        # subject = 'Подтверждение почты'
+        # message = f'Привет {user.username}, перейдите по ссылке для подтверждения вашей почты: ' \
+        # f'{self.request.scheme}://{self.request.get_host()}/users/activate/{token}/'
+        # from_email = settings.DEFAULT_FROM_EMAIL
+        # recipient_list = [user.email]
+        # send_mail(subject, message, from_email, recipient_list, fail_silently=False)
 
-    # Отправляем письмо с токеном подтверждения
-    # subject = 'Подтверждение почты'
-    # message = f'Привет {user.username}, перейдите по ссылке для подтверждения вашей почты: ' \
-    # f'{self.request.scheme}://{self.request.get_host()}/users/activate/{token}/'
-    # from_email = settings.DEFAULT_FROM_EMAIL
-    # recipient_list = [user.email]
-    # send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+        # Сохраняем токен
+        # email_token.save()
 
-    # Сохраняем токен
-    # email_token.save()
-
-    # Перенаправляем пользователя на другую страницу после регистрации
-    # return super().form_valid(form)
-
-    # class UserCreateView(CreateView):
-    # model = User
-    # form_class = UserCreationForm
-    # success_url = reverse_lazy('users:login')
+        # Перенаправляем пользователя на другую страницу после регистрации
+        # return super().form_valid(form)
 
     def form_valid(self, form):
+
         # Получаем пользователя из формы и делаем его не активным
         user = form.save()
         user.is_active = False
@@ -84,15 +79,6 @@ class RegisterView(CreateView):
         email.send()
 
         return super().form_valid(form)
-
-
-class ProfileView(UpdateView):
-    model = User
-    form_class = UserProfileForm
-    success_url = reverse_lazy('users:profile')
-
-    def get_object(self, queryset=None):
-        return self.request.user
 
 
 def signup(request):
@@ -132,7 +118,7 @@ def activate(request, uidb64, token):
     User = get_user_model()
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(pk=uid,)
+        user = User.objects.get(pk=uid, )
     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
 
@@ -153,3 +139,12 @@ def success_verify(request):
 
 def invalid_link(request):
     return render(request, 'invalid_link.html')
+
+
+class ProfileView(UpdateView):
+    model = User
+    form_class = UserProfileForm
+    success_url = reverse_lazy('users:profile')
+
+    def get_object(self, queryset=None):
+        return self.request.user
