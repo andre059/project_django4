@@ -29,3 +29,4 @@ urlpatterns = [
     path('users/activate/<uidb64>/<token>/', views.activate, name='activate'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+

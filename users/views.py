@@ -1,25 +1,15 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm
-
-from django.http import HttpResponse
-
 from django.contrib.sites.shortcuts import get_current_site
-from django.utils.crypto import get_random_string
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
-from django.core.mail import EmailMessage, send_mail
-
-from django.shortcuts import render, redirect
-
+from django.core.mail import EmailMessage
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, CreateView
-
-from django.conf import settings
 from users.forms import UserProfileForm, UserRegisterForm
 from users.models import User
 from .token import account_activation_token
-from .models import EmailVerificationToken
 
 
 class RegisterView(CreateView):
@@ -68,13 +58,9 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True  # устанавливаем поле is_active в значение True
         user.save()  # сохраняем изменения в базе данных
-        # return render(request, 'success_verify.html')
-        return HttpResponse('Благодарим вас за подтверждение по электронной почте. '
-                            'Теперь вы можете войти в свою учетную запись.')
+        return render(request, 'users/success_verify.html')
     else:
-        # return render(request, 'invalid_link.html')
-        # return redirect(reverse_lazy('invalid_link'))
-        return HttpResponse('Ссылка для активации недействительна!')
+        return render(request, 'users/invalid_link.html')
 
 
 class ProfileView(UpdateView):
