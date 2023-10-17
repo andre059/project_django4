@@ -10,6 +10,7 @@ from pytils.translit import slugify
 from catalog.forms import ProductForm, SubjectForm, VersionForm
 from catalog.models import Product, Subject, Version
 
+from .decorators import unauthenticated_user
 
 class ProductListView(ListView):
     model = Product
@@ -115,3 +116,6 @@ def product_list_activ(request):
     return render(request, 'catalog/product_is_active.html', context)
 
 
+@unauthenticated_user
+def home(request):
+    return render(request, 'catalog/base.html')

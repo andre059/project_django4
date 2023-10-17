@@ -5,6 +5,8 @@ from catalog.apps import MainConfig
 from catalog.views import contacts, ProductListView, ProductDetailView, ProductCreateView, ProductDeleteView, \
     ProductUpdateView
 
+from .views import home
+
 app_name = MainConfig.name
 
 urlpatterns = [
@@ -16,4 +18,5 @@ urlpatterns = [
     path('update/<int:pk>/', ProductUpdateView.as_view(), name='update'),
     path('open_images/', views.open_images, name='open_images'),
     path('version/', views.product_list_activ, name='version'),
+    path('home/', home, name='home'),
 ]

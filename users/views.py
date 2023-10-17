@@ -19,7 +19,7 @@ class RegisterView(CreateView):
     success_url = reverse_lazy('users:login')
 
     def __init__(self, **kwargs):
-        super().__init__()
+        super().__init__(**kwargs)
         self.method = None
 
     def form_valid(self, form):

@@ -1,8 +1,9 @@
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from pytils.translit import slugify
 
+from catalog.decorators import unauthenticated_user
 from materials.forms import MaterialsForm
 from materials.models import Materials
 
@@ -74,3 +75,8 @@ def toggle_activiti(request, pk):
     materials_item.save()
 
     return redirect(reverse('materials:list'))
+
+
+@unauthenticated_user
+def listM(request):
+    return render(request, 'materials/materials_list.html')
