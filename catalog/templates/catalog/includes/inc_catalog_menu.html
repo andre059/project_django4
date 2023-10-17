@@ -4,6 +4,7 @@
         <li><a href="{% url 'catalog:home' %}" class="text-white">Главная</a></li>
         <li><a href="{% url 'materials:list' %}" class="text-white">Материалы</a></li>
         <li><a href="{% url 'catalog:contacts' %}" class="text-white">Контакты</a></li>
+        <a href="{% url 'catalog:open_images' %}" id="photoButton" class="text-white">Фото</a>
         {% if user.is_authenticated %}
         <li><a href="{% url 'users:profile' %}" class="text-white">Профиль</a></li>
             <li><a href="{% url 'users:logout' %}" class="text-white">Выйти</a></li>
