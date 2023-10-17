@@ -66,7 +66,7 @@ def activate(request, uidb64, token):
 class ProfileView(UpdateView):
     model = User
     form_class = UserProfileForm
-    success_url = reverse_lazy('users:profile')
+    success_url = reverse_lazy('catalog:home')
 
     def get_object(self, queryset=None):
         return self.request.user
