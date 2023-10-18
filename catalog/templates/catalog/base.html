@@ -56,21 +56,12 @@
 
         <div class="album py-5 bg-light">
             <div class="container">
-
-                <div class="row-6">
-                    {% if user is not None %}
-                        <body>
-                            <h1>Вы не зарегистрированы!</h1><br>
-                                <a href="{% url 'users:register' %}">Зарегистрируйтесь чтобы просматривать всю информацию!</a>
-                        </body>
-                    {% else %}
+                <div class="row">
                         {% block content %}
                         {% endblock %}
-                    {% endif %}
                 </div>
             </div>
         </div>
-
     </main>
 
     <footer class="text-muted">
