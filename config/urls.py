@@ -18,6 +18,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
 
 from users import views
 
@@ -27,6 +28,11 @@ urlpatterns = [
     path('materials/', include('materials.urls', namespace='materials')),
     path('users/', include('users.urls', namespace='users')),
     path('users/activate/<uidb64>/<token>/', views.activate, name='activate'),
+    path('password/reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
+    path('password/reset/confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(),
+         name='password_reset_confirm'),
+    path('', include('django.contrib.auth.urls')),
+    path('accounts/login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

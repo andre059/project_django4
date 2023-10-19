@@ -11,6 +11,10 @@ from users.forms import UserProfileForm, UserRegisterForm
 from users.models import User
 from .token import account_activation_token
 
+from django.contrib.auth.views import PasswordResetView as BasePasswordResetView, \
+        PasswordResetConfirmView as BasePasswordResetConfirmView
+from django.contrib import messages
+
 
 class RegisterView(CreateView):
     model = User
@@ -70,3 +74,31 @@ class ProfileView(UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+
+class PasswordResetView(BasePasswordResetView):
+    """Представление для запроса восстановления пароля"""
+
+    template_name = 'users/password_reset/password_reset.html'
+    success_url = reverse_lazy('users/password_reset:password_reset')
+    email_template_name = 'users/password_reset/password_reset_email.html'
+    subject_template_name = 'users/password_reset/password_reset_subject.txt'
+    success_message = 'Ссылка для сброса пароля была отправлена на вашу электронную почту.'
+
+    def form_valid(self, form):
+        # Опциональные проверки пользователя перед отправкой ссылки на восстановление пароля
+        # Например, можно проверить, что пользователь активен или подтвердил свою электронную почту
+        messages.success(self.request, self.success_message)
+        return super().form_valid(form)
+
+
+class PasswordResetConfirmView(BasePasswordResetConfirmView):
+    """Представление для подтверждения восстановления пароля"""
+
+    template_name = 'users/password_reset/password_reset_confirm.html'
+    success_url = reverse_lazy('users/password_reset:password_reset_complete')
+    success_message = 'Ваш пароль был успешно сброшен.'
+
+    def form_valid(self, form):
+        messages.success(self.request, self.success_message)
+        return super().form_valid(form)

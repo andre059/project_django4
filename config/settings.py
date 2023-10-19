@@ -145,3 +145,4 @@ EMAIL_HOST_PASSWORD = 'otyq jemk xojl yvus'
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = 'andrey01590@gmail.com'
 
+CSRF_TRUSTED_ORIGINS = []
