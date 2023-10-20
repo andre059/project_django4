@@ -12,6 +12,7 @@ from catalog.models import Product, Subject, Version
 
 from .decorators import unauthenticated_user
 
+
 class ProductListView(ListView):
     model = Product
 

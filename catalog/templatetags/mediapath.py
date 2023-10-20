@@ -1,6 +1,6 @@
 from django import template
 from django.conf import settings
-
+from django.forms import Media
 
 register = template.Library()
 
