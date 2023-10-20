@@ -70,7 +70,7 @@ def activate(request, uidb64, token):
 class ProfileView(UpdateView):
     model = User
     form_class = UserProfileForm
-    success_url = reverse_lazy('catalog:home')
+    success_url = reverse_lazy('users:profile')
 
     def get_object(self, queryset=None):
         return self.request.user
@@ -81,13 +81,10 @@ class PasswordResetView(BasePasswordResetView):
 
     template_name = 'users/password_reset/password_reset.html'
     success_url = reverse_lazy('users/password_reset:password_reset')
-    email_template_name = 'users/password_reset/password_reset_email.html'
-    subject_template_name = 'users/password_reset/password_reset_subject.txt'
     success_message = 'Ссылка для сброса пароля была отправлена на вашу электронную почту.'
 
     def form_valid(self, form):
         # Опциональные проверки пользователя перед отправкой ссылки на восстановление пароля
-        # Например, можно проверить, что пользователь активен или подтвердил свою электронную почту
         messages.success(self.request, self.success_message)
         return super().form_valid(form)
 

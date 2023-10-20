@@ -6,7 +6,6 @@ from users.apps import UsersConfig
 from users.views import ProfileView, RegisterView
 
 from .views import PasswordResetView, PasswordResetConfirmView
-from django.contrib.auth import views as auth_views
 
 app_name = UsersConfig.name
 
