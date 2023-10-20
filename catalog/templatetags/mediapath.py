@@ -18,3 +18,4 @@ def mediapath(image_path):
 @register.filter
 def path_filter(text):
     return settings.MEDIA_URL + str(text)
+
