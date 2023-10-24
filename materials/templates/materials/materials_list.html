@@ -3,7 +3,9 @@
 {% block content %}
 <div class="row">
     <div class="col-12 md-5">
+        {% if perms.materials.add_users %}
         <a class="btn btn-outline-primary mt-0 mb-5" href="{% url 'materials:create' %}">Добавить</a>
+        {% endif %}
     </div>
     {% for object in object_list %}
     <div class="col-md-6">
@@ -17,10 +19,14 @@
                     <div class="btn-group">
                         <a href="{% url 'materials:view' object.pk %}"
                            class="btn btn-cm btn-outline-secondary mr-2">Смотреть</a>
+                        {% if perms.materials.delete_users %}
                         <a href="{% url 'materials:edit' object.pk %}" type="button"
                            class="btn btn-cm btn-outline-secondary mr-2">Редактировать</a>
+                        {% endif %}
+                        {% if user.is_superuser %}
                         <a href="{% url 'materials:delete' object.pk %}" type="button"
                            class="btn btn-cm btn-outline-danger">Удалить</a>
+                        {% endif %}
                     </div>
                     {% if object.is_active %}
                     <a class="btn btn-warning" href="{% url 'materials:toggle_activiti' object.pk %}">Деактивировать</a>

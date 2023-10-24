@@ -1,6 +1,8 @@
 import glob
 import webbrowser
 
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.forms import inlineformset_factory
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
@@ -17,6 +19,8 @@ class ProductListView(ListView):
     model = Product
 
 
+@login_required
+# @permission_required('catalog.view_user')
 def contacts(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -35,20 +39,18 @@ class ProductDetailView(DetailView):
     model = Product
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Product
-    # fields = ('name', 'description', 'image', 'category', 'purchase_price')
     form_class = ProductForm
+    permission_required = 'catalog.add_users'
     success_url = reverse_lazy('catalog:home')
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Product
-    # fields = ('name', 'description', 'category')
     form_class = ProductForm
+    permission_required = 'catalog.change_users'
     template_name = 'catalog/product_form_with_formset.html'
-
-    # success_url = reverse_lazy('catalog:home')
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -90,11 +92,15 @@ class ProductUpdateView(UpdateView):
         return super().form_valid(form)
 
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Product
     success_url = reverse_lazy('catalog:home')
 
+    def test_func(self):
+        return self.request.user.is_superuser
 
+
+@login_required
 def open_images(request):
     # Путь к папке с изображениями
     folder_path = "media/preview"
@@ -112,6 +118,7 @@ def open_images(request):
     # return webbrowser.open(image_file)
 
 
+@login_required
 def product_list_activ(request):
     products = Product.objects.all()
     context = {'products': products}

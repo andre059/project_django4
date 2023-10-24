@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import listM
+# from .views import listM
 from materials.apps import MaterialsConfig
 from materials.views import MaterialCreateView, MaterialListView, MateriaDetailView, MaterialUpdateView, \
     MateriaDeleteView, toggle_activiti
@@ -14,5 +14,5 @@ urlpatterns = [
     path('edit/<int:pk>/', MaterialUpdateView.as_view(), name='edit'),
     path('delete/<int:pk>/', MateriaDeleteView.as_view(), name='delete'),
     path('activity/<int:pk>/', toggle_activiti, name='toggle_activiti'),
-    path('list/', listM, name='list'),
+    # path('list/', listM, name='list'),
 ]

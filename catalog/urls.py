@@ -5,7 +5,7 @@ from catalog.apps import MainConfig
 from catalog.views import contacts, ProductListView, ProductDetailView, ProductCreateView, ProductDeleteView, \
     ProductUpdateView
 
-from .views import home
+# from .views import home
 
 app_name = MainConfig.name
 

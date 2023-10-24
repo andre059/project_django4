@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
@@ -8,10 +10,10 @@ from materials.forms import MaterialsForm
 from materials.models import Materials
 
 
-class MaterialCreateView(CreateView):
+class MaterialCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Materials
-    # fields = ('title', 'body')
     form_class = MaterialsForm
+    permission_required = 'materials.add_users'
     success_url = reverse_lazy('materials:list')
 
     def form_valid(self, form):
@@ -23,10 +25,10 @@ class MaterialCreateView(CreateView):
         return super().form_valid(form)
 
 
-class MaterialUpdateView(UpdateView):
+class MaterialUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Materials
-    # fields = ('title', 'body', 'preview')
     form_class = MaterialsForm
+    permission_required = 'materials.change_users'
     success_url = reverse_lazy('materials:list')
 
     def form_valid(self, form):
@@ -41,7 +43,7 @@ class MaterialUpdateView(UpdateView):
         return reverse('materials:view', args=[self.kwargs.get('pk')])
 
 
-class MaterialListView(ListView):
+class MaterialListView(LoginRequiredMixin, ListView):
     model = Materials
 
     def get_queryset(self, *args, **kwargs):
@@ -50,7 +52,7 @@ class MaterialListView(ListView):
         return queryset
 
 
-class MateriaDetailView(DetailView):
+class MateriaDetailView(LoginRequiredMixin, DetailView):
     model = Materials
 
     def get_object(self, queryset=None):
@@ -60,11 +62,16 @@ class MateriaDetailView(DetailView):
         return self.object
 
 
-class MateriaDeleteView(DeleteView):
+class MateriaDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Materials
     success_url = reverse_lazy('materials:list')
 
+    def test_func(self):
+        return self.request.user.is_superuser
 
+
+@login_required
+@permission_required('materials.view_user')
 def toggle_activiti(request, pk):
     materials_item = get_object_or_404(Materials, pk=pk)
     if materials_item.is_active:
