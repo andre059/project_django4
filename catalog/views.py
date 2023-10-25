@@ -1,13 +1,11 @@
 import glob
-import webbrowser
 
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.forms import inlineformset_factory
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
-from pytils.translit import slugify
 
 from catalog.forms import ProductForm, SubjectForm, VersionForm
 from catalog.models import Product, Subject, Version
@@ -20,7 +18,6 @@ class ProductListView(ListView):
 
 
 @login_required
-# @permission_required('catalog.view_user')
 def contacts(request):
     if request.method == 'POST':
         name = request.POST.get('name')

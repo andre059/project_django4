@@ -29,7 +29,7 @@ class MaterialUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView
     model = Materials
     form_class = MaterialsForm
     permission_required = 'materials.change_users'
-    success_url = reverse_lazy('materials:list')
+    # success_url = reverse_lazy('materials:list')
 
     def form_valid(self, form):
         if form.is_valid():
@@ -43,7 +43,7 @@ class MaterialUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView
         return reverse('materials:view', args=[self.kwargs.get('pk')])
 
 
-class MaterialListView(LoginRequiredMixin, ListView):
+class MaterialListView(ListView):
     model = Materials
 
     def get_queryset(self, *args, **kwargs):
