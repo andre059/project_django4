@@ -19,7 +19,7 @@
                     <div class="btn-group">
                         <a href="{% url 'materials:view' object.pk %}"
                            class="btn btn-cm btn-outline-secondary mr-2">Смотреть</a>
-                        {% if perms.materials.delete_users %}
+                        {% if perms.materials.change_users %}
                         <a href="{% url 'materials:edit' object.pk %}" type="button"
                            class="btn btn-cm btn-outline-secondary mr-2">Редактировать</a>
                         {% endif %}
@@ -28,10 +28,12 @@
                            class="btn btn-cm btn-outline-danger">Удалить</a>
                         {% endif %}
                     </div>
+                    {% if perms.materials.change_users %}
                     {% if object.is_active %}
                     <a class="btn btn-warning" href="{% url 'materials:toggle_activiti' object.pk %}">Деактивировать</a>
                     {% else %}
                     <a class="btn btn-success" href="{% url 'materials:toggle_activiti' object.pk %}">Активировать</a>
+                    {% endif %}
                     {% endif %}
                 </div>
             </div>
