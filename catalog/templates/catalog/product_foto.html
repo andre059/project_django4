@@ -1,9 +1,8 @@
-{% load mediapath %}
 <div>
     <div class="col-sm-4 offset-md-1 py-4">
         <div>
             {% for image_file in image_files %}
-            <img src="{% mediapath object.image_file %}" width="300" height="300" alt="">
+            <img src="{{ image_file }}" width="300" height="300" alt="">
             {% endfor %}
         </div>
     </div>
