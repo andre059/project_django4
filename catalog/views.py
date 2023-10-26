@@ -1,7 +1,5 @@
-import glob
 import os
 
-from PIL import Image
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.forms import inlineformset_factory
@@ -42,14 +40,14 @@ class ProductDetailView(DetailView):
 class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
-    permission_required = 'catalog.add_users'
+    permission_required = ['auth.is_staff', 'catalog.add_users']
     success_url = reverse_lazy('catalog:home')
 
 
 class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
-    permission_required = 'catalog.change_users'
+    permission_required = ['auth.is_staff', 'catalog.change_users']
     template_name = 'catalog/product_form_with_formset.html'
 
     def __init__(self, **kwargs):
@@ -97,7 +95,7 @@ class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     success_url = reverse_lazy('catalog:home')
 
     def test_func(self):
-        return self.request.user.is_superuser
+        return self.request.user.is_superuser and self.request.user.is_staff
 
 
 class ProductFotoView(View):
