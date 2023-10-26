@@ -1,10 +1,13 @@
 import glob
+import os
 
+from PIL import Image
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.forms import inlineformset_factory
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
+from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 
 from catalog.forms import ProductForm, SubjectForm, VersionForm
@@ -97,22 +100,24 @@ class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return self.request.user.is_superuser
 
 
-@login_required
-def open_images(request):
-    # Путь к папке с изображениями
-    folder_path = "media/preview"
+class ProductFotoView(View):
+    def get(self, request):
+        # Получение списка файлов из папки media/preview
+        foto_dir = 'media/preview'  # Путь к папке с фотографиями
+        foto_list = os.listdir(foto_dir)  # Список всех файлов в папке
 
-    # Поиск всех изображений в папке
-    image_files = glob.glob(folder_path + "/*")
-    # Одно изображение
-    # image_files = ["media/preview"]
+        # Создание списка URL-адресов для каждой фотографии
+        foto_urls = []
+        for foto_file in foto_list:
+            foto_path = os.path.join(foto_dir, foto_file)
+            # Формируем URL, добавляя путь относительно корневой директории проекта
+            foto_url = request.build_absolute_uri(f'/{foto_path}')
+            foto_urls.append(foto_url)
 
-    # Передача списка изображений в шаблон
-    return render(request, 'catalog/product_foto.html', {'image_files': image_files})
+        # Передача списка URL-адресов в шаблон
+        context = {'foto_urls': foto_urls}
 
-    # Открытие каждого изображения в браузере
-    # for image_file in image_files:
-    # return webbrowser.open(image_file)
+        return render(request, 'catalog/product_foto.html', context)
 
 
 @login_required
