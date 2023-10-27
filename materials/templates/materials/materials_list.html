@@ -3,7 +3,7 @@
 {% block content %}
 <div class="row">
     <div class="col-12 md-5">
-        {% if perms.materials.add_users %}
+        {% if perms.materials.add_materials %}
         <a class="btn btn-outline-primary mt-0 mb-5" href="{% url 'materials:create' %}">Добавить</a>
         {% endif %}
     </div>
@@ -17,11 +17,11 @@
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                        {% if perms.materials.view %}
+                        {% if perms.materials.view_materials %}
                         <a href="{% url 'materials:view' obj.pk %}"
                            class="btn btn-cm btn-outline-secondary mr-2">Смотреть</a>
                         {% endif %}
-                        {% if perms.materials.change_users %}
+                        {% if perms.materials.change_materials %}
                         <a href="{% url 'materials:edit' obj.pk %}" type="button"
                            class="btn btn-cm btn-outline-secondary mr-2">Редактировать</a>
                         {% endif %}
@@ -30,7 +30,7 @@
                            class="btn btn-cm btn-outline-danger">Удалить</a>
                         {% endif %}
                     </div>
-                    {% if perms.materials.change_users %}
+                    {% if perms.materials.change_materials %}
                     {% if obj.is_active %}
                     <a class="btn btn-warning" href="{% url 'materials:toggle_activiti' obj.pk %}">Деактивировать</a>
                     {% else %}

@@ -10,6 +10,7 @@ class Command(BaseCommand):
             email='admin@sky.pro',
             first_name='Admin',
             last_name='SkyPro',
+            is_active=True,
             is_staff=True,
             is_superuser=True
         )

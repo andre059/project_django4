@@ -16,7 +16,7 @@ from materials.services import get_cached_for_materials
 class MaterialCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Materials
     form_class = MaterialsForm
-    permission_required = 'materials.add_users'
+    permission_required = 'materials.add_materials'
     success_url = reverse_lazy('materials:list')
 
     def form_valid(self, form):
@@ -31,7 +31,7 @@ class MaterialCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView
 class MaterialUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Materials
     form_class = MaterialsForm
-    permission_required = 'materials.change_users'
+    permission_required = 'materials.change_materials'
     # success_url = reverse_lazy('materials:list')
 
     def form_valid(self, form):
@@ -57,7 +57,7 @@ class MaterialListView(ListView):
 
 class MateriaDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = Materials
-    permission_required = 'materials.view_users'
+    permission_required = 'materials.view_materials'
 
     def get_object(self, queryset=None):
         object = super().get_object(queryset)
