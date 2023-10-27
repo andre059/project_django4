@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.decorators.cache import cache_page
 
 # from .views import listM
 from materials.apps import MaterialsConfig
@@ -9,7 +10,7 @@ app_name = MaterialsConfig.name
 
 urlpatterns = [
     path('create/', MaterialCreateView.as_view(), name='create'),
-    path('', MaterialListView.as_view(), name='list'),
+    path('', cache_page(60)(MaterialListView.as_view()), name='list'),
     path('view/<int:pk>/', MateriaDetailView.as_view(), name='view'),
     path('edit/<int:pk>/', MaterialUpdateView.as_view(), name='edit'),
     path('delete/<int:pk>/', MateriaDeleteView.as_view(), name='delete'),

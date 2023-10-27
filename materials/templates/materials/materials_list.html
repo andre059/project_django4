@@ -7,32 +7,34 @@
         <a class="btn btn-outline-primary mt-0 mb-5" href="{% url 'materials:create' %}">Добавить</a>
         {% endif %}
     </div>
-    {% for object in object_list %}
+    {% for obj in object_list %}
     <div class="col-md-6">
         <div class="card mb-4 box-shadow d-flex flex-column justify-content-center align-items-center text-center "
              style="width: 530px; height: 150px; overflow: auto;">
             <div class="card-body">
                 <p class="card-text">
-                    {{ object|title }}
+                    {{ obj|title }}
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                        <a href="{% url 'materials:view' object.pk %}"
+                        {% if perms.materials.view %}
+                        <a href="{% url 'materials:view' obj.pk %}"
                            class="btn btn-cm btn-outline-secondary mr-2">Смотреть</a>
+                        {% endif %}
                         {% if perms.materials.change_users %}
-                        <a href="{% url 'materials:edit' object.pk %}" type="button"
+                        <a href="{% url 'materials:edit' obj.pk %}" type="button"
                            class="btn btn-cm btn-outline-secondary mr-2">Редактировать</a>
                         {% endif %}
                         {% if user.is_superuser %}
-                        <a href="{% url 'materials:delete' object.pk %}" type="button"
+                        <a href="{% url 'materials:delete' obj.pk %}" type="button"
                            class="btn btn-cm btn-outline-danger">Удалить</a>
                         {% endif %}
                     </div>
                     {% if perms.materials.change_users %}
-                    {% if object.is_active %}
-                    <a class="btn btn-warning" href="{% url 'materials:toggle_activiti' object.pk %}">Деактивировать</a>
+                    {% if obj.is_active %}
+                    <a class="btn btn-warning" href="{% url 'materials:toggle_activiti' obj.pk %}">Деактивировать</a>
                     {% else %}
-                    <a class="btn btn-success" href="{% url 'materials:toggle_activiti' object.pk %}">Активировать</a>
+                    <a class="btn btn-success" href="{% url 'materials:toggle_activiti' obj.pk %}">Активировать</a>
                     {% endif %}
                     {% endif %}
                 </div>

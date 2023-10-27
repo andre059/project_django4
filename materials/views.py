@@ -1,5 +1,7 @@
+from django.conf import settings
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
+from django.core.cache import cache
 from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
@@ -8,6 +10,7 @@ from pytils.translit import slugify
 from catalog.decorators import unauthenticated_user
 from materials.forms import MaterialsForm
 from materials.models import Materials
+from materials.services import get_cached_for_materials
 
 
 class MaterialCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -52,14 +55,28 @@ class MaterialListView(ListView):
         return queryset
 
 
-class MateriaDetailView(LoginRequiredMixin, DetailView):
+class MateriaDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = Materials
+    permission_required = 'materials.view_users'
 
     def get_object(self, queryset=None):
-        self.object = super().get_object(queryset)
-        self.object.views_count += 1
-        self.object.save()
-        return self.object
+        object = super().get_object(queryset)
+        object.views_count = get_cached_for_materials(object.pk)
+        return object
+
+    # def get_context_data(self, **kwargs):
+        # context_data = super().get_context_data(**kwargs)
+        # if settings.CACHES_ENABLED:
+            # key = f'subject_list{self.object.pk}'
+            # subject_list = cache.get(key)
+            # if subject_list is None:
+                # subject_list = self.object.subject_set.all()
+                # cache.set(key, subject_list)
+        # else:
+            # subject_list = self.object.subject_set.all()
+
+        # context_data['subjects'] = subject_list
+        # return context_data
 
 
 class MateriaDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -84,6 +101,6 @@ def toggle_activiti(request, pk):
     return redirect(reverse('materials:list'))
 
 
-@unauthenticated_user
-def listM(request):
-    return render(request, 'materials/materials_list.html')
+# @unauthenticated_user
+# def listM(request):
+    # return render(request, 'materials/materials_list.html')
