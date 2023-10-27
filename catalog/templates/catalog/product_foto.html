@@ -1,8 +1,10 @@
+{% load mediapath %}
+
 <div>
     <div class="col-sm-4 offset-md-1 py-4">
         <div>
-            {% for foto_url in foto_urls %}
-                <img src="{{ foto_url }}" width="300" height="300" alt="">
+            {% for product in products %}
+                <img src="{{ product.image|mediapath }}" width="300" height="300" alt="">
             {% endfor %}
         </div>
     </div>
