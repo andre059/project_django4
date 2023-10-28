@@ -40,14 +40,14 @@ class ProductDetailView(DetailView):
 class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
-    permission_required = (('auth.is_staff',), 'catalog.add_users')
+    permission_required = ['catalog.add_product']
     success_url = reverse_lazy('catalog:home')
 
 
 class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
-    permission_required = (('auth.is_staff',), 'catalog.change_users')
+    permission_required = ['catalog.change_product']
     template_name = 'catalog/product_form_with_formset.html'
 
     def __init__(self, **kwargs):

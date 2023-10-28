@@ -30,12 +30,12 @@
                            class="btn btn-cm btn-outline-danger">Удалить</a>
                         {% endif %}
                     </div>
-                    {% if perms.materials.change_materials %}
-                    {% if obj.is_active %}
-                    <a class="btn btn-warning" href="{% url 'materials:toggle_activiti' obj.pk %}">Деактивировать</a>
-                    {% else %}
-                    <a class="btn btn-success" href="{% url 'materials:toggle_activiti' obj.pk %}">Активировать</a>
-                    {% endif %}
+                    {% if perms.materials.view_materials %}
+                        {% if obj.is_active %}
+                        <a class="btn btn-warning" href="{% url 'materials:toggle_activiti' obj.pk %}">Деактивировать</a>
+                        {% else %}
+                        <a class="btn btn-success" href="{% url 'materials:toggle_activiti' obj.pk %}">Активировать</a>
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>

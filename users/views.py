@@ -1,11 +1,12 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, CreateView
 from users.forms import UserProfileForm, UserRegisterForm
@@ -50,6 +51,10 @@ class RegisterView(CreateView):
         email.send()
 
         return super().form_valid(form)
+
+    @login_required
+    def register(request):
+        return redirect('home')
 
 
 def activate(request, uidb64, token):
