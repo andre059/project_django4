@@ -92,13 +92,12 @@ class MateriaDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 def toggle_activiti(request, pk):
     materials_item = get_object_or_404(Materials, pk=pk)
 
-    if request.method == 'POST':
-        if materials_item.is_active:
-            materials_item.is_active = False
-        else:
-            materials_item.is_active = True
+    if materials_item.is_active:
+        materials_item.is_active = False
+    else:
+        materials_item.is_active = True
 
-        materials_item.save()
+    materials_item.save()
 
     return redirect(reverse('materials:list'))
 
