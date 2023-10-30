@@ -25,6 +25,9 @@ class MaterialCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView
             new_mat.slug = slugify(new_mat.name)
             new_mat.save()
 
+            # Перезатирание ключа кеша
+            cache.delete('material:list')
+
         return super().form_valid(form)
 
 
@@ -40,6 +43,9 @@ class MaterialUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView
             new_mat.slug = slugify(new_mat.price)
             new_mat.save()
 
+            # Перезатирание ключа кеша
+            cache.delete('material:list')
+
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -50,8 +56,14 @@ class MaterialListView(ListView):
     model = Materials
 
     def get_queryset(self, *args, **kwargs):
-        queryset = super().get_queryset(*args, **kwargs)
-        queryset = queryset.filter(is_published=True)
+        # Использование кеша
+        queryset = cache.get('material:list')
+
+        if not queryset:
+            queryset = super().get_queryset(*args, **kwargs)
+            queryset = queryset.filter(is_published=True)
+            # Установка кеша
+            cache.set('material:list', queryset)
         return queryset
 
 
@@ -98,6 +110,9 @@ def toggle_activiti(request, pk):
         materials_item.is_active = True
 
     materials_item.save()
+
+    # Перезатирание ключа кеша
+    cache.delete('material:list')
 
     return redirect(reverse('materials:list'))
 
